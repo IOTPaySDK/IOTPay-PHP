@@ -49,8 +49,8 @@ if($ret['retCode'] == 'SUCCESS'){
 
 2, After addcard, will redirect to returnUrl with the following parameters:
 
-   If success: retCode=SUCCESS
-   If fail: retCode=FAIL&retMsg=xxxx
+     If success: retCode=SUCCESS
+     If fail: retCode=FAIL&retMsg=xxxx
    
 3, Querycard to get cardinfo information
 
@@ -66,7 +66,6 @@ $v3->addCard('1234d5678',$returnurl);//redirect to card input page
 
 ```php
 //query card
-
 require_once('creditcardv3.php');
 $v3 = new CreditCardV3();
 $cardinfo = $v3->queryCard('1234d5678'));
@@ -74,7 +73,6 @@ $cardinfo = $v3->queryCard('1234d5678'));
 
 ```php
 //recurring puschase
-
 require_once('creditcardv3.php');
 $v3 = new CreditCardV3();
 $cardinfo = $v3->queryCard('1234d5678'));
