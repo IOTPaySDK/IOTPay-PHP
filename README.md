@@ -1,6 +1,7 @@
 # Before Integration
 
 1 config your  MCH_KEY, MCH_ID, LOGIN_NAME in CreditCardV3 class.
+
 2 using following code sample to call Iotpay creditcard V3 api.
 
 ## Installation
@@ -10,7 +11,9 @@ Download creditcardv3.php and included in your project
 ## Simple purchase
 
 1, Call purchase and redirect to redirectUrl to let user input credit card info;
+
 2, After purchase, will redirect to returnUrl;
+
 3, If the transaction is successful, IOTPay will notify to notifyUrl;
 
 ```php
@@ -43,10 +46,14 @@ if($ret['retCode'] == 'SUCCESS'){
 ## Recurring purchase
 
 1, Call addcard and then redirect to retData.redirectUrl to let user input credit card info;
+
 2, After addcard, will redirect to returnUrl with the following parameters:
+
    If success: retCode=SUCCESS
    If fail: retCode=FAIL&retMsg=xxxx
+   
 3, Querycard to get cardinfo information
+
 4, If addcard is successful, call purchasewithtoken to do real purchase
 
 ```php
