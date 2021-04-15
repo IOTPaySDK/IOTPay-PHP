@@ -1,12 +1,14 @@
-# Before Integration
-
-1 config your  MCH_KEY, MCH_ID, LOGIN_NAME in CreditCardV3 class.
-
-2 using following code sample to call Iotpay creditcard V3 api.
 
 ## Installation
 
 Download creditcardv3.php and included in your project
+
+# Before Integration
+
+1 Config your  MCH_KEY, MCH_ID, LOGIN_NAME in CreditCardV3 class.
+
+2 Using following code sample to call Iotpay creditcard V3 api.
+
 
 ## Simple purchase
 
