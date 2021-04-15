@@ -63,7 +63,7 @@ if($ret['retCode'] == 'SUCCESS'){
 require_once('creditcardv3.php');
 $returnurl = 'https://develop.iotpay.ca/new/v3dev/result.php?abc=111&code=234&cardid=12345678';
 $v3 = new CreditCardV3();
-$v3->addCard('1234d5678',$returnurl);//redirect to card input page
+$v3->addCard('12345678',$returnurl);//redirect to card input page
 ```
 
 ```php
@@ -77,9 +77,8 @@ $cardinfo = $v3->queryCard('1234d5678'));
 //recurring puschase
 require_once('creditcardv3.php');
 $v3 = new CreditCardV3();
-$cardinfo = $v3->queryCard('1234d5678'));
 
-$cardid     = '1234s5678';
+$cardid     = '12345678';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $ret = $v3->withToken($cardid,$mchorderno,$amount);
