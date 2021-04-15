@@ -2,9 +2,9 @@
 
 class CreditCardV3 {
  
-    const MCH_KEY     = 'uxesg58ixZvT9yvmepsCI7KclidMheKE';
-    const MCH_ID      = '10000576';
-    const LOGIN_NAME  = 'vancent';
+    const MCH_KEY     = '**************';
+    const MCH_ID      = '1*******6';
+    const LOGIN_NAME  = '******';
 
     const API_ADDCARD    = 'https://ccdev.iotpaycloud.com/v3/cc_addcard';
     const API_QUERYCARD  = 'https://ccdev.iotpaycloud.com/v3/cc_querycard';
