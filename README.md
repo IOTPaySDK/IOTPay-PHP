@@ -101,6 +101,8 @@ if($ret['retCode'] == 'SUCCESS'){
 ```
 ## Securepage
 
+A Iframe will be embedded in your web page which allow you to input creditcard info. 
+
 1 Include following code in your web page.
 
 2 Get SecureId from addCard or Purchase API.
