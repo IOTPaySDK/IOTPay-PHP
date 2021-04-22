@@ -28,7 +28,12 @@ $cardid     = '1234s5678';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $v3         = new CreditCardV3();
-$v3->purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl); //redirect to card input page
+$res = $v3->purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl); //redirect to card input page
+if ($res['retCode'] == 'SUCCESS') {
+	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to purchase page
+} else {
+	echo $res['retMsg'];
+}
 ```
 ## Simple purchase--handling notification
 
@@ -63,7 +68,12 @@ if($ret['retCode'] == 'SUCCESS'){
 require_once('creditcardv3.php');
 $returnurl = 'https://develop.iotpay.ca/new/v3dev/result.php?abc=111&code=234&cardid=12345678';
 $v3 = new CreditCardV3();
-$v3->addCard('12345678',$returnurl);//redirect to card input page
+$res = $v3->addCard('12345678',$returnurl);//redirect to card input page
+if ($res['retCode'] == 'SUCCESS') {
+	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to addcard page
+} else {
+	echo $res['retMsg'];
+}
 ```
 
 ```php
@@ -88,6 +98,22 @@ if($ret['retCode'] == 'SUCCESS'){
       //payment success
    }
 }
+```
+## Securepage
+
+1 Include following code in your web page.
+
+2 Get SecureId from addCard or Purchase API.
+
+3 Use SecureId as parameters and call JS function initIotpaySecurePay(secureid,addorpurchase).
+addorpurchase must be Add or Purchase.
+
+```html
+<div id="iotpay_creditcard"/>
+<script>
+  var secureid = 'addfd2***2323sdf'//
+  initIotpaySecurePay(secureid,'Pay');
+</script>
 ```
 
 ## Contributing
