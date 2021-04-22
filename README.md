@@ -111,6 +111,7 @@ A Iframe will be embedded in your web page which allow you to input creditcard i
 addorpurchase must be Add or Purchase.
 
 ```html
+<script type="text/javascript" src="https://ccapi.iotpaycloud.com/iotpaycc.js"></script>
 <div id="iotpay_creditcard"/>
 <script>
   var secureid = 'addfd2***2323sdf'// get secureid from addCard or Purchase API
