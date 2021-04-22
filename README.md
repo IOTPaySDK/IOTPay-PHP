@@ -113,8 +113,8 @@ addorpurchase must be Add or Purchase.
 ```html
 <div id="iotpay_creditcard"/>
 <script>
-  var secureid = 'addfd2***2323sdf'//
-  initIotpaySecurePay(secureid,'Pay');
+  var secureid = 'addfd2***2323sdf'// get secureid from addCard or Purchase API
+  initIotpaySecurePay(secureid,'Pay');// second params must be Add or Purchase
 </script>
 ```
 
