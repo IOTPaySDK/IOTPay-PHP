@@ -43,7 +43,7 @@ $amount     = 0.01;
 $v3         = new CreditCardV3();
 $res = $v3->purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl); 
 if ($res['retCode'] == 'SUCCESS') {
-	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to card input page 
+	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to Iotpay credit card input page 
 } else {
 	echo $res['retMsg'];
 }
