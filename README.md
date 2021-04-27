@@ -9,6 +9,19 @@ Download creditcardv3.php and included in your project
 
 2 Using following code sample to call Iotpay creditcard V3 api.
 
+# Choose Integration Modes and Redirect Methods
+
+1 Integration Modes
+
+Simple purchase: The customers input card info and purchase once, users will be prompted to input card info each time when they purchase.
+
+Recurring purchase: The customers input card info once, can purchase with the tokenized card multiple times.
+
+2 Redirect Methods
+
+Redirect methods: The customers will be redirected to Iotpay webpage to input credit card info.
+
+Securefield methods: The customers will be redirected to merchant webpage which includes Iotpay iframe to input credit card info.
 
 ## Simple purchase
 
@@ -28,9 +41,9 @@ $cardid     = '1234s5678';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $v3         = new CreditCardV3();
-$res = $v3->purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl); //redirect to card input page
+$res = $v3->purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl); 
 if ($res['retCode'] == 'SUCCESS') {
-	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to purchase page
+	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to card input page 
 } else {
 	echo $res['retMsg'];
 }
@@ -70,7 +83,7 @@ $returnurl = 'https://develop.iotpay.ca/new/v3dev/result.php?abc=111&code=234&ca
 $v3 = new CreditCardV3();
 $res = $v3->addCard('12345678',$returnurl);//redirect to card input page
 if ($res['retCode'] == 'SUCCESS') {
-	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to addcard page
+	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to Iotpay credit card input page
 } else {
 	echo $res['retMsg'];
 }
@@ -99,9 +112,9 @@ if($ret['retCode'] == 'SUCCESS'){
    }
 }
 ```
-## Securepage
+## About Securefield
 
-A Iframe will be embedded in your web page which allow you to input creditcard info. 
+A Iframe will be embedded in merchant web page which allow your customers to input creditcard info. 
 
 1 Include following code in your web page.
 
@@ -114,11 +127,11 @@ addorpurchase must be Add or Purchase.
 <script type="text/javascript" src="https://ccapi.iotpaycloud.com/iotpaycc.js"></script>
 <div id="iotpay_creditcard"/>
 <script>
-  var secureid = 'addfd2***2323sdf'// get secureid from addCard or Purchase API
+  var secureid = 'addfd2***2323sdf'   // get secureid from addCard or Purchase API
   initIotpaySecurePay(secureid,'Add');// second params must be Add or Purchase
 </script>
 ```
 
 ## Contributing
 
-Iotpay team.
+Iotpay team MT.
