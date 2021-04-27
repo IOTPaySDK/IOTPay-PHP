@@ -13,7 +13,7 @@ Download creditcardv3.php and included in your project
 
 1 Integration Modes
 
-Simple purchase: The customers input card info and purchase once, users will be prompted to input card info each time when they purchase.
+Simple purchase: The customers input card info and purchase once. The customers will be prompted to input card info each time when they purchase.
 
 Recurring purchase: The customers input card info once, can purchase with the tokenized card multiple times.
 
