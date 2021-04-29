@@ -120,15 +120,63 @@ A Iframe will be embedded in merchant web page which allow your customers to inp
 
 2 Get SecureId from addCard or Purchase API.
 
-3 Use SecureId as parameters and call JS function initIotpaySecurePay(secureid,addorpurchase).
+3 Use SecureId as parameters and call JS function Iotpay(secureid,addorpurchase，option).
 addorpurchase must be Add or Purchase.
 
 ```html
 <script type="text/javascript" src="https://ccapi.iotpaycloud.com/iotpaycc.js"></script>
-<div id="iotpay_creditcard"/>
-<script>
-  var secureid = 'addfd2***2323sdf'   // get secureid from addCard or Purchase API
-  initIotpaySecurePay(secureid,'Add');// second params must be Add or Purchase
+ <div id="iotpay_normal"></div>
+<!-- <div class="dark" id="iotpay_normal_dark"></div>
+ <div id="iotpay_card"></div>
+ <div class="dark" id="iotpay_card_dark"></div>
+ <div id="iotpay_custom"></div>
+ <div id="card-element"></div> -->
+<script>  
+    const options_dark = { darkMode: true, };
+    const options_card = { theme: 'card', };
+    const options_card_dark = { darkMode: true, theme: 'card', };
+    const options_custom = {
+        darkMode: false, // 'dark'/'light', default is light
+        theme: 'card',   // 'card', default is null
+        button: {
+            text: 'Custom Text',
+            color: '#fff',
+            backgroundColor: 'black',
+            backgroundImage: 'none',
+            boxShadow: 'none',
+            height: '60px'
+        },
+    };
+
+    let callback = function(event)
+    {
+     // console.log('callback', event);
+     // alert(JSON.stringify(event));      
+      if(event.retCode =='SUCCESS'){
+        window.parent.location.href = event.retData.redirectUrl;
+      }else{
+        if(event.retData.hasOwnProperty("redirectUrl")){
+          window.parent.location.href = event.retData.redirectUrl;
+        }else{
+          alert(event.retMsg); 
+        }
+      }
+    }
+    let secureId ='3adfd*******3fdfd'//get secureId from addCard or Purchase endpoint.
+    let iotpay_normal = Iotpay(secureId, 'Add');// second params must be Add or Pay
+    iotpay_normal.mount('#iotpay_normal', callback);
+
+   /* let iotpay_normal_dark = Iotpay(secureId, 'Pay', options_dark);// second params must be Add or Pay
+    iotpay_normal_dark.mount('#iotpay_normal_dark', callback);
+
+    let iotpay_card = Iotpay(secureId, 'Pay', options_card );// second params must be Add or Pay
+    iotpay_card.mount('#iotpay_card', callback);
+
+    let iotpay_card_dark = Iotpay(secureId, 'Pay', options_card_dark );// second params must be Add or Pay
+    iotpay_card_dark.mount('#iotpay_card_dark', callback);
+
+    let iotpay_custom = Iotpay(secureId, 'Pay', options_custom );// second params must be Add or Pay
+    iotpay_custom.mount('#iotpay_custom', callback);*/  
 </script>
 ```
 
