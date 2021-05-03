@@ -105,7 +105,7 @@ class CreditCardV3 {
         $resBody = $this->request(self::API_ADDCARD, $param);
         //echo $resBody;
         $res = json_decode($resBody, true);
-		return  $res;
+	return  $res;
         /*if ($res['retCode'] == 'SUCCESS') {
             header('Location: ' . $res['retData']['redirectUrl']);//Redirect to addcard page
         } else {
@@ -143,7 +143,7 @@ class CreditCardV3 {
         $resBody     = $this->request(self::API_PURCHASE, $param);//Submit to the gateway
         //echo $resBody;
         $res = json_decode($resBody, true);
-		return  $res;
+	return  $res;
 /*
         if ($res['retCode'] == 'SUCCESS') {
             header('Location: ' . $res['retData']['redirectUrl']);//Redirect to payment page 
