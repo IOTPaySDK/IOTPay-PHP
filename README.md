@@ -124,7 +124,7 @@ A Iframe will be embedded in merchant web page which allow your customers to inp
 addorpurchase must be Add or Purchase.
 
 ```html
-<script type="text/javascript" src="https://ccapi.iotpaycloud.com/iotpaycc.js"></script>
+<script type="text/javascript" src="https://ccapi.iotpaycloud.com/cc/iotpaycc.js"></script>
  <div id="iotpay_normal"></div>
 <script>
     let callback = function(event)
