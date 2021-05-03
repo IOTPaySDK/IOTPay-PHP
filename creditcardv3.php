@@ -6,17 +6,17 @@ class CreditCardV3 {
     const MCH_ID      = '1*******6';
     const LOGIN_NAME  = '******';
 
-    const API_ADDCARD    = 'https://ccdev.iotpaycloud.com/v3/cc_addcard';
-    const API_QUERYCARD  = 'https://ccdev.iotpaycloud.com/v3/cc_querycard';
+    const API_ADDCARD    = 'https://ccapi.iotpaycloud.com/v3/cc_addcard';
+    const API_QUERYCARD  = 'https://ccapi.iotpaycloud.com/v3/cc_querycard';
 
-    const API_PURCHASE   = 'https://ccdev.iotpaycloud.com/v3/cc_purchase';   
-    const API_WITHTOKEN  = 'https://ccdev.iotpaycloud.com/v3/cc_purchasewithtoken';
-    const API_WITHWALLET = 'https://ccdev.iotpaycloud.com/v3/cc_purchasewithwallet';
+    const API_PURCHASE   = 'https://ccapi.iotpaycloud.com/v3/cc_purchase';   
+    const API_WITHTOKEN  = 'https://ccapi.iotpaycloud.com/v3/cc_purchasewithtoken';
+    const API_WITHWALLET = 'https://ccapi.iotpaycloud.com/v3/cc_purchasewithwallet';
     
-    const API_QUERYORDER = 'https://ccdev.iotpaycloud.com/v3/cc_query';
+    const API_QUERYORDER = 'https://ccapi.iotpaycloud.com/v3/cc_query';
 
-    const API_VOID     = 'https://ccdev.iotpaycloud.com/v3/cc_void';
-    const API_REFUND   = 'https://ccdev.iotpaycloud.com/v3/cc_refund';
+    const API_VOID     = 'https://ccapi.iotpaycloud.com/v3/cc_void';
+    const API_REFUND   = 'https://ccapi.iotpaycloud.com/v3/cc_refund';
 
     public function __construct()
     {
