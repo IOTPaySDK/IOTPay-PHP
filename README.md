@@ -151,7 +151,9 @@ We provide several credit card input css style. Please check following static Ht
 card input page with css option:
 
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.html
+
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption2.html
+
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption3.html
 
 card input page without css option:
