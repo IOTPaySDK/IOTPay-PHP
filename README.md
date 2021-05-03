@@ -152,6 +152,8 @@ card input page with css option:
 
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.html
 
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption1.html
+
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption2.html
 
 https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption3.html
