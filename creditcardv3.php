@@ -38,10 +38,6 @@ class CreditCardV3 {
         return $output;
     }
 
-    /** Signature string
-     *$prestr: Strings to be signed
-     *return: Signature result
-     */
     private function  md5sign($prestr, $sign_type)
     {
         $sign = '';
@@ -53,11 +49,6 @@ class CreditCardV3 {
         return $sign;
     }
 
-    /**
-     *Put all the elements of the array into a string with the "&" character according to the pattern of "parameter = parameter value"
-     *$array: array to be stitched
-     *return: string after stitching completed
-     */
     private function  create_linkstring($array)
     {
         $arg = "";
@@ -78,17 +69,13 @@ class CreditCardV3 {
         return $mysgin;
     }
 
-    /**Sort array
-     *$array: array before sorting
-     *return: sorted array
-     */
     private function arg_sort($array)
     {
         ksort($array, SORT_NATURAL | SORT_FLAG_CASE);
         reset($array);
         return $array;
     }
-    //call following API
+	
     public function addCard($cardid,$returnurl)
     {
         $arr = array(
@@ -106,6 +93,7 @@ class CreditCardV3 {
 	}
 	return  $this->res;
     }
+	
     public function queryCard($cardid)
     {
         $arr = array(
@@ -121,6 +109,7 @@ class CreditCardV3 {
 	}
 	return $this->res;	
     }
+	
     public function purchase($mchorderno,$amount,$returnurl,$notifyurl)
     {
         $arr = array(
@@ -161,6 +150,7 @@ class CreditCardV3 {
 	}
         return $this->res;
     }
+	
     public function withWallet($cardid, $mchorderno, $amount,$walletdata,$wallettype)
     {
         $arr = array(
@@ -182,6 +172,7 @@ class CreditCardV3 {
 	}
         return $this->res;
     }
+	
     public function queryOrder($payorderid,$mchorderno)
     {
         $arr['mchId'] = self::MCH_ID;
@@ -203,6 +194,7 @@ class CreditCardV3 {
 	}
         return $this->res;
     }
+	
     public function void($originalorderid,$mchrefundno)
     {
         $arr = array(
@@ -220,7 +212,8 @@ class CreditCardV3 {
 	}
         return $this->res;       
     }
-    public   function refund($originalorderid,$mchrefundno,$amount)
+	
+    public function refund($originalorderid,$mchrefundno,$amount)
     {
         $arr = array(
             'mchId'       => self::MCH_ID,
@@ -238,6 +231,7 @@ class CreditCardV3 {
 	}
         return $this->res;      
     }
+	
     public function receiveNotification()
     {
 	$content = file_get_contents("php://input");
