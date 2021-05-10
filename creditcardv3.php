@@ -17,10 +17,9 @@ class CreditCardV3 {
 
     const API_VOID     = 'https://ccapi.iotpaycloud.com/v3/cc_void';
     const API_REFUND   = 'https://ccapi.iotpaycloud.com/v3/cc_refund';
+	
+    public $res = array('retCode' => 'FAIL','retMsg' => 'return null','retData' => '');
 
-    public function __construct()
-    {
-    }
     private function request($url, $params)
     {
         $ch = curl_init();
@@ -75,9 +74,7 @@ class CreditCardV3 {
     {
         $prestr = $this->create_linkstring($sort_array);
         $prestr = $prestr . "&key=" . $key;
-        //Connect the stitched string directly to the security check code
         $mysgin = $this->md5sign($prestr, $sign_type);
-        //Sign the final string to get the signature result
         return $mysgin;
     }
 
@@ -91,7 +88,8 @@ class CreditCardV3 {
         reset($array);
         return $array;
     }
-    public   function addCard($cardid,$returnurl)
+    //call following API
+    public function addCard($cardid,$returnurl)
     {
         $arr = array(
             'cardId' => $cardid,
@@ -103,14 +101,11 @@ class CreditCardV3 {
         $arr['sign'] = $this->build_mysign($sort_array,self::MCH_KEY, "MD5");
         $param   = json_encode($arr);
         $resBody = $this->request(self::API_ADDCARD, $param);
-        //echo $resBody;
-        $res = json_decode($resBody, true);
-	return  $res;
-        /*if ($res['retCode'] == 'SUCCESS') {
-            header('Location: ' . $res['retData']['redirectUrl']);//Redirect to addcard page
-        } else {
-            echo $res['retMsg'];
-        }*/
+	
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+	return  $this->res;
     }
     public function queryCard($cardid)
     {
@@ -122,8 +117,10 @@ class CreditCardV3 {
         $arr['sign'] = $this->build_mysign($sort_array,self::MCH_KEY, "MD5");
         $param   = json_encode($arr);
         $resBody = $this->request(self::API_QUERYCARD, $param);
-        //echo $resBody;
-        return json_decode($resBody, true);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+	return $this->res;	
     }
     public function purchase($mchorderno,$amount,$returnurl,$notifyurl)
     {
@@ -140,18 +137,13 @@ class CreditCardV3 {
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
         $param       = json_encode($arr);
         $resBody     = $this->request(self::API_PURCHASE, $param);//Submit to the gateway
-        //echo $resBody;
-        $res = json_decode($resBody, true);
-	return  $res;
-/*
-        if ($res['retCode'] == 'SUCCESS') {
-            header('Location: ' . $res['retData']['redirectUrl']);//Redirect to payment page 
-        } else {
-            echo $res['retMsg'];
-        }*/
+        if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+	return  $this->res;
     }
 
-    public   function withToken($cardid, $mchorderno, $amount)//purchase with token
+    public function withToken($cardid, $mchorderno, $amount)//purchase with token
     {
         $arr = array(
             'mchId'      => self::MCH_ID,
@@ -164,11 +156,13 @@ class CreditCardV3 {
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
         $param       = json_encode($arr);
-        $resBody     = $this->request(self::API_WITHTOKEN, $param);//Submit to the gateway
-      //echo  $resBody;
-        return json_decode($resBody, true);
+        $resBody     = $this->request(self::API_WITHTOKEN, $param);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+        return $this->res;
     }
-    public   function withWallet($cardid, $mchorderno, $amount,$walletdata,$wallettype)
+    public function withWallet($cardid, $mchorderno, $amount,$walletdata,$wallettype)
     {
         $arr = array(
             'cardId'     => $cardid,
@@ -183,11 +177,13 @@ class CreditCardV3 {
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
         $param       = json_encode($arr);
-        $resBody     = $this->request(self::API_WITHWALLET, $param);//Submit to the gateway
-        //echo $resBody;
-        return json_decode($resBody, true);
+        $resBody     = $this->request(self::API_WITHWALLET, $param);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+        return $this->res;
     }
-    public   function queryOrder($payorderid,$mchorderno)
+    public function queryOrder($payorderid,$mchorderno)
     {
         $arr['mchId'] = self::MCH_ID;
         if($payorderid != '' && $payorderid != ' ')
@@ -202,8 +198,11 @@ class CreditCardV3 {
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");//Generate signature parameter sign
         $param       = json_encode($arr);
-        $resBody     = $this->request(self::API_QUERYORDER, $param);//Submit to the gateway
-        return json_decode($resBody, true);
+        $resBody     = $this->request(self::API_QUERYORDER, $param);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+        return $this->res;
     }
     public function void($originalorderid,$mchrefundno)
     {
@@ -216,9 +215,11 @@ class CreditCardV3 {
         $sort_array = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");//Generate signature parameter sign
         $param = json_encode($arr);
-        $resBody = $this->request(self::API_VOID, $param);//Submit to the gateway
-        //echo $resBody;
-        return json_decode($resBody, true);       
+        $resBody = $this->request(self::API_VOID, $param);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+        return $this->res;       
     }
     public   function refund($originalorderid,$mchrefundno,$amount)
     {
@@ -232,12 +233,18 @@ class CreditCardV3 {
         $sort_array = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");//Generate signature parameter sign
         $param = json_encode($arr);
-        $resBody = $this->request(self::API_REFUND, $param);//Submit to the gateway
-        //echo $resBody;
-        return json_decode($resBody, true);      
+        $resBody = $this->request(self::API_REFUND, $param);
+	if($resBody != '' || $resBody !=' '){
+		$this->res = json_decode($resBody, true);
+	}
+        return $this->res;      
     }
     public function receiveNotification()
     {
+	$content = file_get_contents("php://input");
+	if($content != '' || $content !=' '){
+		return $this->res;
+	}
         $arr = json_decode(file_get_contents("php://input"),true);
         $backsign = $arr['sign'];
         unset($arr["sign"]);
@@ -245,14 +252,14 @@ class CreditCardV3 {
         $mysign     = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
         if ($mysign == $backsign) {           
             echo "SUCCESS";//DO NOT DELETE
-            $retarr['retCode'] = 'SUCCESS';
-            $retarr['retData'] = $arr;
-            return $retarr;
+            $this->res['retCode'] = 'SUCCESS';
+            $this->res['retData'] = $arr;
+            return $this->res;;
         }else {
             echo "FAIL";//DO NOT DELETE
-            $retarr['retCode'] = 'FAIL';
-            $retarr['retData'] = $arr;
-            return $retarr;
+            $this->res['retCode'] = 'FAIL';
+            $this->res['retData'] = $arr;
+            return $this->res;;
         }
     }
 }
