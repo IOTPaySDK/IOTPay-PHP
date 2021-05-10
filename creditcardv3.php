@@ -125,10 +125,9 @@ class CreditCardV3 {
         //echo $resBody;
         return json_decode($resBody, true);
     }
-    public function purchase($cardid,$mchorderno,$amount,$returnurl,$notifyurl)
+    public function purchase($mchorderno,$amount,$returnurl,$notifyurl)
     {
         $arr = array(
-            'cardId'     => $cardid,
             'mchOrderNo' => $mchorderno,
             'mchId'      => self::MCH_ID,
             'currency'   => 'CAD',
