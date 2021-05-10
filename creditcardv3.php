@@ -100,8 +100,7 @@ class CreditCardV3 {
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array,self::MCH_KEY, "MD5");
         $param   = json_encode($arr);
-        $resBody = $this->request(self::API_ADDCARD, $param);
-	
+        $resBody = $this->request(self::API_ADDCARD, $param);	
 	if($resBody != '' || $resBody !=' '){
 		$this->res = json_decode($resBody, true);
 	}
