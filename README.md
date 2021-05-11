@@ -149,17 +149,17 @@ We provide several credit card input css style. Please check following static Ht
 
 card input page with css option:
 
-https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.html
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.php
 
-https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption1.html
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption1.php
 
-https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption2.html
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption2.php
 
-https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption3.html
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption3.php
 
 card input page without css option:
 
-https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.html
+https://develop.iotpay.ca/newdemo/card/v3/mchpagewithoption.php
 
 ## Contributing
 
