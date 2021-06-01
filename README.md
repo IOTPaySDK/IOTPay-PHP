@@ -23,6 +23,10 @@ Redirect methods: The customers will be redirected to Iotpay webpage to input cr
 
 Securefield methods: The customers will be redirected to merchant webpage which includes Iotpay iframe to input credit card info.
 
+## Payment success
+
+retCode == 'SUCCESS' && (status == 2 or status == 3)
+
 ## Simple purchase
 
 1, Call purchase and redirect to redirectUrl to let user input credit card info;
@@ -40,7 +44,9 @@ $notifyurl = 'https://develop.iotpay.ca/new/v3dev/notify.php';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $v3         = new CreditCardV3();
-$res = $v3->purchase($mchorderno,$amount,$returnurl,$notifyurl); 
+$channelid  = 'PF_CC';//channelid could be 'PF_CC' or  'UPI_EX'
+                      //'UPI_EX' is only for union card 
+$res = $v3->purchase($mchorderno,$amount,$returnurl,$notifyurl,$channelid); 
 if ($res['retCode'] == 'SUCCESS') {
 	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to Iotpay credit card input page 
 } else {
@@ -80,7 +86,9 @@ if($ret['retCode'] == 'SUCCESS'){
 require_once('creditcardv3.php');
 $returnurl = 'https://develop.iotpay.ca/new/v3dev/result.php?abc=111&code=234&cardid=12345678';
 $v3 = new CreditCardV3();
-$res = $v3->addCard('12345678',$returnurl);//redirect to card input page
+$channelid  = 'PF_CC';//channelid could be 'PF_CC' or  'UPI_EX'
+                      //'UPI_EX' is only for union card 
+$res = $v3->addCard('12345678',$returnurl,$channelid);//redirect to card input page
 if ($res['retCode'] == 'SUCCESS') {
 	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to Iotpay credit card input page
 } else {
