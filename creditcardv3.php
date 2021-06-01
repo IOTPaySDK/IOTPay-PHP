@@ -197,13 +197,14 @@ class CreditCardV3 {
         return $this->res;
     }
 	
-    public function void($originalorderid,$mchrefundno)
+    public function void($originalorderid,$mchrefundno,$notifyurl='https://localhost')
     {
         $arr = array(
             'mchId'       => self::MCH_ID,
             'mchRefundNo' => $mchrefundno,
             'loginName'   => self::LOGIN_NAME,
             'payOrderId'  => $originalorderid,
+	    'notifyUrl'   => $notifyurl,
         );
         $sort_array = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");//Generate signature parameter sign
@@ -215,14 +216,15 @@ class CreditCardV3 {
         return $this->res;       
     }
 	
-    public function refund($originalorderid,$mchrefundno,$amount)
+    public function refund($originalorderid,$mchrefundno,$amount,$notifyurl='https://localhost')
     {
         $arr = array(
             'mchId'       => self::MCH_ID,
             'mchRefundNo' => $mchrefundno,
             'loginName'   => self::LOGIN_NAME,
             'payOrderId'  => $originalorderid,
-            'refundAmount'     => intval($amount * 100),
+            'refundAmount' => intval($amount * 100),
+	    'notifyUrl'    => $notifyurl,
         );
         $sort_array = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");//Generate signature parameter sign
