@@ -76,13 +76,14 @@ class CreditCardV3 {
         return $array;
     }
 	
-    public function addCard($cardid,$returnurl)
+    public function addCard($cardid,$returnurl,$channelid)
     {
         $arr = array(
             'cardId' => $cardid,
             'mchId'  => self::MCH_ID,
             'returnUrl' => $returnurl,
             'loginName' => self::LOGIN_NAME,
+	    'channelId' => $channelid,
         );
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array,self::MCH_KEY, "MD5");
@@ -110,7 +111,7 @@ class CreditCardV3 {
 	return $this->res;	
     }
 	
-    public function purchase($mchorderno,$amount,$returnurl,$notifyurl)
+    public function purchase($mchorderno,$amount,$returnurl,$notifyurl,$channelid)
     {
         $arr = array(
             'mchOrderNo' => $mchorderno,
@@ -120,6 +121,7 @@ class CreditCardV3 {
             'loginName'  => self::LOGIN_NAME,
             'notifyUrl'  => $notifyurl,
             'returnUrl'  => $returnurl,
+	    'channelId'  => $channelid,
         );
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
