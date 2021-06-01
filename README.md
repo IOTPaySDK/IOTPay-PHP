@@ -111,7 +111,8 @@ $v3 = new CreditCardV3();
 $cardid     = '12345678';
 $mchorderno = '11113f1';
 $amount     = 0.01;
-$ret = $v3->withToken($cardid,$mchorderno,$amount);
+$notifyurl  = 'https://yournotifyurl'; // 'UPI_EX' must include notifyurl
+$ret = $v3->withToken($cardid,$mchorderno,$amount,$notifyurl);
 if($ret['retCode'] == 'SUCCESS'){
    $order = $ret['retData'];
    if($order['status'] ===2 || $order['status'] ===3 ){
