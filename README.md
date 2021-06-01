@@ -23,7 +23,7 @@ Redirect methods: The customers will be redirected to Iotpay webpage to input cr
 
 Securefield methods: The customers will be redirected to merchant webpage which includes Iotpay iframe to input credit card info.
 
-## Payment success
+## Payment or refund or void success
 
 retCode == 'SUCCESS' && (status == 2 or status == 3)
 
