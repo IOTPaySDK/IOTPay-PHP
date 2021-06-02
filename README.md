@@ -137,12 +137,14 @@ addorpurchase must be Add or Purchase.
 <script>
     let callback = function(event)
     {  
-      if(event.retCode =='SUCCESS'){// addcard or purchase success
-	//add your code here
-        window.parent.location.href = event.retData.redirectUrl;
+      if(event.retCode =='SUCCESS'){
+	if(event.retData.status ==2 || event.retData.status==3){
+	   //addcard or purchase success
+	   window.parent.location.href = event.retData.redirectUrl;
+	}        
       }else{
-	//add your code here
-        if(event.retData.hasOwnProperty("redirectUrl")){
+	//add card or purchase fail
+        if(event.retData.hasOwnProperty("redirectUrl")){ 	  
           window.parent.location.href = event.retData.redirectUrl;
         }else{
           alert(event.retMsg); 
