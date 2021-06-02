@@ -135,21 +135,27 @@ addorpurchase must be Add or Purchase.
 <script type="text/javascript" src="https://ccapi.iotpaycloud.com/cc/iotpaycc.js"></script>
  <div id="iotpay_normal"></div>
 <script>
-    let callback = function(event)
-    {  
-      if(event.retCode =='SUCCESS'){
-	if(event.retData.status ==2 || event.retData.status==3){
-	   //addcard or purchase success
-	   window.parent.location.href = event.retData.redirectUrl;
-	}        
-      }else{
-	//add card or purchase fail
-        if(event.retData.hasOwnProperty("redirectUrl")){ 	  
-          window.parent.location.href = event.retData.redirectUrl;
-        }else{
-          alert(event.retMsg); 
-        }
-      }
+    let callback = function(event) {
+	console.log(event);
+	if (event.result == 'SUCCESS') {
+	    // Add/Pay Success
+	    // Return data will be contained in event.detail
+	    // if (event.detail.retData && event.detail.retData.redirectUrl) {
+	    //     window.parent.location.replace(event.detail.retData.redirectUrl);
+	    // }
+	} else if (event.result == 'FAIL' && event.message == 'Timeout') {
+	    // Union Pay require query orders. We will be timed out after 30 tries and merchant needs to query the order.
+	    //
+	} else if (event.result == 'FAIL') {
+	    // Add/Pay Failed
+	    // Return data will be contained in event.detail
+	    // if (event.detail.retData && event.detail.retData.redirectUrl) {
+	    //     window.parent.location.replace(event.detail.retData.redirectUrl);
+	    // }
+	}
+	if (event.detail.retData && event.detail.retData.redirectUrl) {
+	    window.parent.location.replace(event.detail.retData.redirectUrl);
+	}
     }
     let secureId ='3adfd*******3fdfd'//get secureId from addCard or Purchase endpoint.
     let iotpay_normal = Iotpay(secureId, 'Add');// second params must be Add or Pay
