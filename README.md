@@ -141,7 +141,7 @@ addorpurchase must be Add or Purchase.
 	    // Add/Pay Success
 	    // Return data will be contained in event.detail
 	    // if (event.detail.retData && event.detail.retData.redirectUrl) {
-	    //     window.parent.location.replace(event.detail.retData.redirectUrl);
+	    //     window.location.replace(event.detail.retData.redirectUrl);
 	    // }
 	} else if (event.result == 'FAIL' && event.message == 'Timeout') {
 	    // Union Pay require query orders. We will be timed out after 30 tries and merchant needs to query the order.
@@ -150,11 +150,11 @@ addorpurchase must be Add or Purchase.
 	    // Add/Pay Failed
 	    // Return data will be contained in event.detail
 	    // if (event.detail.retData && event.detail.retData.redirectUrl) {
-	    //     window.parent.location.replace(event.detail.retData.redirectUrl);
+	    //     window.location.replace(event.detail.retData.redirectUrl);
 	    // }
 	}
 	if (event.detail.retData && event.detail.retData.redirectUrl) {
-	    window.parent.location.replace(event.detail.retData.redirectUrl);
+	    window.location.replace(event.detail.retData.redirectUrl);
 	}
     }
     let secureId ='3adfd*******3fdfd'//get secureId from addCard or Purchase endpoint.
