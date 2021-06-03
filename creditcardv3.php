@@ -142,7 +142,7 @@ class CreditCardV3 {
             'amount'     => intval($amount * 100),
             'currency'   => 'CAD',
             'loginName'  => self::LOGIN_NAME,
-	    'notifyUrl'  => $notifyurl;
+	    'notifyUrl'  => $notifyurl,
         );
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
