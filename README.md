@@ -44,9 +44,10 @@ $notifyurl = 'https://develop.iotpay.ca/new/v3dev/notify.php';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $v3         = new CreditCardV3();
-$channel  = 'PF_CC';//channel could be 'PF_CC' or  'UPI_EX'
+$channel    = 'PF_CC';//channel could be 'PF_CC' or  'UPI_EX'
                       //'UPI_EX' is only for union card 
-$res = $v3->purchase($mchorderno,$amount,$returnurl,$notifyurl,$channel); 
+$mchuserid  = 'mybuyer1';
+$res = $v3->purchase($mchorderno,$amount,$returnurl,$notifyurl,$channel,$mchuserid); 
 if ($res['retCode'] == 'SUCCESS') {
 	header('Location: ' . $res['retData']['redirectUrl']);//Redirect to Iotpay credit card input page 
 } else {
@@ -112,7 +113,9 @@ $cardid     = '12345678';
 $mchorderno = '11113f1';
 $amount     = 0.01;
 $notifyurl  = 'https://yournotifyurl'; // 'UPI_EX' must include notifyurl
-$ret = $v3->withToken($cardid,$mchorderno,$amount,$notifyurl);
+$mchuserid  = 'mybuyer1';
+$myclientip = '127.0.0.1';//my client ip
+$ret = $v3->withToken($cardid,$mchorderno,$amount,$notifyurl,$mchuserid,$myclientip);
 if($ret['retCode'] == 'SUCCESS'){
    $order = $ret['retData'];
    if($order['status'] ===2 || $order['status'] ===3 ){
