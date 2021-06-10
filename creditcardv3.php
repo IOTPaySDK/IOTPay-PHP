@@ -111,7 +111,7 @@ class CreditCardV3 {
 	return $this->res;	
     }
 	
-    public function purchase($mchorderno,$amount,$returnurl,$notifyurl,$channel)
+    public function purchase($mchorderno,$amount,$returnurl,$notifyurl,$channel,$mchuserid)
     {
         $arr = array(
             'mchOrderNo' => $mchorderno,
@@ -121,7 +121,8 @@ class CreditCardV3 {
             'loginName'  => self::LOGIN_NAME,
             'notifyUrl'  => $notifyurl,
             'returnUrl'  => $returnurl,
-	    'channel'  => $channel,
+	    'channel'    => $channel,
+	    'mchUserId'  => $mchuserid,
         );
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
@@ -133,7 +134,7 @@ class CreditCardV3 {
 	return  $this->res;
     }
 
-    public function withToken($cardid, $mchorderno, $amount,$notifyurl='https://localhost')//purchase with token
+    public function withToken($cardid, $mchorderno, $amount,$notifyurl='https://localhost',$mchuserid,$clientip)//purchase with token
     {
         $arr = array(
             'mchId'      => self::MCH_ID,
@@ -143,6 +144,8 @@ class CreditCardV3 {
             'currency'   => 'CAD',
             'loginName'  => self::LOGIN_NAME,
 	    'notifyUrl'  => $notifyurl,
+	    'mchUserId'  => $mchuserid,
+	    'clientIp'   => $clientip,
         );
         $sort_array  = $this->arg_sort($arr);
         $arr['sign'] = $this->build_mysign($sort_array, self::MCH_KEY, "MD5");
